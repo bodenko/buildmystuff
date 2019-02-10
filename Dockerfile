@@ -1,3 +1,3 @@
 FROM hypriot/rpi-alpine
 
-CMD ["echo", "Hello World 123!"]
+CMD ["echo", "Hello World!"]
