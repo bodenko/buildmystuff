@@ -16,4 +16,4 @@ test:
 	docker run --rm $(DOCKER_IMAGE_TAGNAME) /bin/echo "Success."
 
 version:
-	docker run --rm $(DOCKER_IMAGE_TAGNAME) java -version
+	docker run --rm $(DOCKER_IMAGE_TAGNAME) uname -a
