@@ -6,16 +6,13 @@ script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # build image
-- docker build -t bodenko/test:build .
+- make build
 # test image
-- docker run bodenko/test:build version
+- make test
+- make version
 # push image
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-    TAG=$(grep download Dockerfile | sed 's,.*/download/,,' | sed 's,/.*$,,')
-    docker tag bodenko/test:build bodenko/test:$TAG
-    docker push bodenko/test:$TAG
-    docker tag bodenko/test:build bodenko/test:latest
-    docker push bodenko/test:latest
+    make push
   fi
